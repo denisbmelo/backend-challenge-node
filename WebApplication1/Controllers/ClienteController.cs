@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Services.Interfaces;
+using WebApplication1.Services.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -8,24 +10,21 @@ namespace WebApplication1.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly Logger<ClienteController> _logger;
+        private readonly IClienteService _clienteService;
 
-        public ClienteController (Logger<ClienteController> logger)
+        public ClienteController (Logger<ClienteController> logger , IClienteService clienteService)
         {
              _logger = logger;
+            _clienteService = clienteService;
         }
 
         [HttpPost]
         [Route("incluir-cliente")]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<int>> IncluirCliente( ClienteModel cliente)
         {
-            return new string[] { "value1", "value2" };
+            return StatusCode(await _clienteService.IncluirCliente(cliente));
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+     
     }
 }

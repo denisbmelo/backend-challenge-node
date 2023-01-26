@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Services;
+using WebApplication1.Services.Interfaces;
+using WebApplication1.Services.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -8,24 +11,22 @@ namespace WebApplication1.Controllers
     public class ProdutoController : ControllerBase
     {
         private readonly Logger<ProdutoController> _logger;
+        private readonly IProdutoService _service;
 
-        public ProdutoController (Logger<ProdutoController> logger)
+        public ProdutoController (Logger<ProdutoController> logger , IProdutoService produtoService)
         {
             _logger = logger;
+            _service = produtoService;
         }
 
         [HttpGet]
         [Route("incluir-produto")]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<int>> IncluirCliente(ProdutoModel produto)
         {
-            return new string[] { "value1", "value2" };
+            return StatusCode(await _service.IncluirProduto(produto));
         }
 
-        
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+       
+       
     }
 }
