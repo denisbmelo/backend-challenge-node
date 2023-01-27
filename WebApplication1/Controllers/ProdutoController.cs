@@ -10,12 +10,12 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class ProdutoController : ControllerBase
     {
-        private readonly Logger<ProdutoController> _logger;
+       
         private readonly IProdutoService _service;
 
-        public ProdutoController (Logger<ProdutoController> logger , IProdutoService produtoService)
+        public ProdutoController ( IProdutoService produtoService)
         {
-            _logger = logger;
+            
             _service = produtoService;
         }
 

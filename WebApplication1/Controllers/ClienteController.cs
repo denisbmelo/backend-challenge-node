@@ -9,12 +9,11 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        private readonly Logger<ClienteController> _logger;
+        
         private readonly IClienteService _clienteService;
 
-        public ClienteController (Logger<ClienteController> logger , IClienteService clienteService)
+        public ClienteController (IClienteService clienteService)
         {
-             _logger = logger;
             _clienteService = clienteService;
         }
 

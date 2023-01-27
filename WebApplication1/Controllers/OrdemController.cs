@@ -12,12 +12,12 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class OrdemController : ControllerBase
     {
-        private readonly Logger<OrdemController> _logger;
+       
         private readonly IOrdemService _ordemService;
 
-        public OrdemController (Logger<OrdemController> logger, IOrdemService ordemService)
+        public OrdemController ( IOrdemService ordemService)
         {
-            _logger = logger;
+            
             _ordemService = ordemService;
 
         }
